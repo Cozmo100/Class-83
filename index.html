@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Class 83 - touch events</title>
+        <style>
+            #mc{
+                border: 10px solid burlywood;
+                background-color:rgb(185, 197, 134);
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+
+        <h1>Touch events - Paint</h1>
+        <canvas height="400" width="600" id="mc"></canvas>
+
+    </center>
+    </body>
+    <script>
+     canvas = document.getElementById('mc');
+     ctx = canvas.getContext('2d');
+
+     canvas.addEventListener('touchstart',my_touchstart);
+     function my_touchstart(e)
+    {
+        lpx = e.touches[0].clientX - canvas.offsetLeft;
+        lpy = e.touches[0].clientY - canvas.offsetTop;
+    }
+
+    canvas.addEventListener('touchmove',my_touchmove);
+     function my_touchmove(e)
+    {
+        cpx = e.touches[0].clientX - canvas.offsetLeft;
+        cpy = e.touches[0].clientY - canvas.offsetTop;
+
+        ctx.beginPath();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "black";
+        ctx.moveTo(lpx,lpy);
+        ctx.lineTo(cpx,cpy);
+        ctx.stroke();
+
+        lpx = cpx;
+        lpy = cpy;
+    }
+        
+    
+
+
+    </script>
+</html>
